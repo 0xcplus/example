@@ -1,8 +1,8 @@
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap');
 @font-face {
-    { font-family: 'NanumBarunGothic';src: url('/fonts/NanumBarunGothic.eot');
-    src: url('/fonts/NanumBarunGothic.eot') format('embedded-opentype'),url('/fonts/NanumBarunGothic.woff') format('woff');
+    font-family: 'NanumGothic';
+    src: url('https://example.com/fonts/NanumGothic.otf') format('opentype');
 }
 
 body {
@@ -43,9 +43,12 @@ main {
     padding: 2rem;
 }
 
-textarea {
+form {
+    margin-bottom: 2rem;
+}
+
+input[type="text"], input[type="date"], textarea {
     width: 100%;
-    height: 100px;
     margin-bottom: 1rem;
     border: 1px solid #555;
     background-color: #2c2c2c;
@@ -54,13 +57,12 @@ textarea {
     border-radius: 4px;
 }
 
+textarea {
+    height: 100px;
+}
+
 input[type="file"] {
     margin: 0.5rem 0;
-    background-color: #2c2c2c;
-    color: #f0f0f0;
-    border: 1px solid #555;
-    padding: 0.5rem;
-    border-radius: 4px;
 }
 
 button {
