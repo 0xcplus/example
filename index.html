@@ -1,47 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-  <meta charset="UTF-8">
-  <style>
-	body
-	{
-	font-family:"noto sans KR";
-	font-size:30px;
-	}
+ 	<meta charset="UTF-8">
+ 	<style>
+		h3 { width:93%; padding:30px;
+		border : round;
+		background-color:black; color:white;}
 
-	input
-	{
-	font-family:"noto sans KR";
-	}
-  </style>
-  <title>CHAPTER 10</title>
+		body { font-family:"noto sans KR light"; font-size:18px;
+		margin:10px; padding:20px;}
+		form { font-family:"noto sans KR";}
+		option, textarea { font-family:"noto sans KR";}
+		input { font-family:"나눔고딕otf";
+		padding:4px;}
+		fieldset { padding:20px;}
+
+		#color { background-color:#dfdfdd; color:black; 
+		transition:1s;}
+		#color:hover { background-color:gray; color:white;
+		transition:1s;}
+	</style>
+  <title>example</title>
  </head>
  <body>
- 	<input type="button" value="Yes"  onclick="alert('Hello World');">
-	<input type="button" value="Unconnect" ondblclick="Summon();">
+ 	<h3>다양한 입력 폼</h3>
+	<form method="get" action="form_app.js">
+	<fieldset>
+		<legend>로그인</legend>
+		<!--name : 집단을 대표하는 동시에, 이를 나타내는 값-->
+		ID :  &nbsp; <input type="text" name="ID" placeholder="아이디 입력"/><br>
+		PW : <input type="password" name="PW"placeholder="패스워드 입력"/>
+	</fieldset><br>
+	
 
-	<input id="UserName" type="text" value="Type the name of user.">
+	<hr>
+	<fieldset>
+		<legend>개인정보</legend>
+		성명 : <input type="text" name="person" /><br>
 
-	<script type="text/javascript">
-		function Summon()
-		{
-			var a = prompt("server");
-			alert("A summoner has left the game : "+a+" server");
-			dom.value=a;
-		}
+		회원 : <input type="radio" name="member" value="non"  checked/>비회원
+				<input type="radio" name="member" value="temp" />일시회원 <!--같은 name 중 하나-->
+				<input type="radio" name="member" value="regl" />정기회원
+				<input type="radio" name="member" value="MVP" />MVP회원
+				<button onclick="test1()">체크된 객체 value 가져오기 </button><br>
 
-		var dom = document.getElementById("UserName");
-		dom.onclick = Summon;
 
-		/*
-		1. document.폼이름.위젯ID.value;
-		2. document.forms[index].위젯ID.vlaue;
-		3. document.forms[index].elements[index].vlaue;
-		*/
-	</script>
-	<!--
-	onclick, ondblclick
-	onload, onresize, onscroll
-	-->
- </body>
+		성별 : <input type="radio" name="sex" value="male" id="man"/>
+				<label for="man">남성</label>
+				<input type="radio" name="sex" value="female" id="woman"/>
+				<label for="woman">여성</label><br>
+				<!--name : 변수에 해당+데이터 저장, id : 고유 데이터 정보
+				label 입력 폼 사용 용이-->
+		직업 : <select name="job" size="4" multiple/>
+					<option value="stud"  selected>학생</option>
+					<option value="comp">회사원</option>
+					<option>공무원</option> <option>기타</option>
+					<p>ctrl+클릭을 통해 다중선택이 가능합니다.</p>
+				</select>
+	</fieldset><hr>
+	<fieldset>
+		<p>
+		구입희망분야(복수선택 가능)<br>
+		분야 : <input type="checkbox" name="books" value="" checked/>컴퓨터 <!--미리 선택-->
+				<input type="checkbox" name="books" value="" />경제
+				<input type="checkbox" name="books" value="" />상식<br>
+
+		도서명: <input type="text" list="book" />
+		<datalist id="book">
+			<option value="멀티미디어배움터" label="정규과정" />
+			<option value="인터넷배움터" label="LMS" />
+			<option value="컴퓨터와 IT기술의 이해" label="인터넷진흥원" />
+		</datalist><br>
+
+		<p>선호도 : 1 <input type="range" min="1" max="5" value="3"> 5</p>
+		<p>가격 : <input type="number" name="price" min="" step="100" value="10000"></p>
+		<p>권수 : <input type="number" name="num" min="0" step="1" value="0"></p>
+		수령 희망일 : <input type="date" name="last_date" min="2010-01-01"><br>
+		수령 시간 : <input type="time" name="time_from" min="07:00" max="18:00"><br>
+
+
+
+		비고 : <br>
+				<textarea name="comments" rows="4" cols="40" placeholder="비고란에 입력해주세요."></textarea><br>
+		파일 : <input type="file" name="myfile"/>
+
+		<hr>이메일 주소 : <input type="email" />
+		<br>URL 주소 : <input type="url" />
+		<br>전화번호
+		<input type="tel" placeholder="00*-000*-0000" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"/>
+	</fieldset>
+
+				<!--pattern
+				[A-Za-z]{no} : no개 만큼의 영문자를 입력
+				[0-9]{no} : no개 만큼의 숫자를 입력
+				[A-Za-z0-9]{min, max} : 영문자&숫자를 min에서 max만큼의 글자 수 입력
+				[0,9]+ : 숫자를 1개 이상 입력-->
+
+		</p> <hr>
+				<input type="submit" value="신청" id="color"/>
+				<input type="submit" value="취소" id="color"/>
+				<input type="reset" value="복구" id="color"/> <!--초기화-->
+				<input type="button" value="저장" id="color" onClick="alert('입력값 확인완료. 임시저장하였습니다.')"/>
+				<input type="image" src="" width="80mm" alt="" />
+
+				<!--search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=안녕하세요
+				-->
+
+				
+
+				<br><br>
+				<input type="radio" name="fruit" value="apple"/>사과
+				<input type="radio" name="fruit" value="strawberry"/>딸기
+				<input type="radio" name="fruit" value="lemon"/>레몬
+				<input type="radio" name="fruit" value="mango"/>망고
+				<input type="radio" name="fruit" value="melon"/>메론
+				<button onclick="test()">체크된 객체 value 가져오기 </button>
+
+		
+		<br></br><br><input type="text" id="name" onkeyup='printName()'/>
+		<!--onkeyup : 이벤트 호출 함수; 키보드에 압력을 가했다 다시 돌려놓을 때-->
+			<div> id = ‘result’</div>
+
+		<script>
+			  function printName() {
+				const name = document.getElementById('name').value;
+				document.getElementById("result").innerText = name; 
+			  } 
+
+			   function test() {
+					var obj_length = document.getElementsByName("fruit").length;
+
+					for (var i=0; i<obj_length; i++)
+					{
+						if (document.getElementsByName("fruit")[i].checked == true)
+						{
+							alert(document.getElementsByName("fruit")[i].value);
+						}
+					}
+				}
+
+				 function test1() {
+					var obj_length = document.getElementsByName("member").length;
+
+					for (var i=0; i<obj_length; i++)
+					{
+						if (document.getElementsByName("member")[i].checked == true)
+						{
+							alert(document.getElementsByName("member")[i].value);
+						}
+					}
+				}
+		</script>
+
+		<!--동적 이벤트-->
+ </form></body>
 </html>
