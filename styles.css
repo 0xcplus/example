@@ -1,13 +1,21 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap');
+@font-face {
+    font-family: 'NanumGothic';
+    src: url('https://example.com/fonts/NanumGothic.otf') format('opentype');
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica', 'NanumGothic', monospace;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #f0f0f0;
+    background-color: #1e1e1e;
 }
 
 header {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #2c2c2c;
+    color: #f0f0f0;
     padding: 1rem;
     text-align: center;
 }
@@ -23,8 +31,12 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: #f0f0f0;
     text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
 main {
@@ -35,26 +47,37 @@ textarea {
     width: 100%;
     height: 100px;
     margin-bottom: 1rem;
+    border: 1px solid #555;
+    background-color: #2c2c2c;
+    color: #f0f0f0;
+    padding: 0.5rem;
+    border-radius: 4px;
 }
 
 input[type="file"] {
     margin: 0.5rem 0;
+    background-color: #2c2c2c;
+    color: #f0f0f0;
+    border: 1px solid #555;
+    padding: 0.5rem;
+    border-radius: 4px;
 }
 
 button {
     padding: 0.5rem 1rem;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #333;
+    color: #f0f0f0;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #444;
 }
 
 footer {
-    background-color: #f1f1f1;
+    background-color: #2c2c2c;
     text-align: center;
     padding: 1rem;
     position: fixed;
