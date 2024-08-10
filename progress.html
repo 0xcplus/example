@@ -1,71 +1,50 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const progressForm = document.getElementById('progress-form');
-    const entriesList = document.getElementById('entries');
-    const backupButton = document.getElementById('backup');
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일일 진행 상황</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>일일 진행 상황</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">홈으로</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    function loadEntries() {
-        const entries = JSON.parse(localStorage.getItem('progressEntries')) || [];
-        entriesList.innerHTML = '';
-        entries.forEach((entry, index) => {
-            const li = document.createElement('li');
-            li.setAttribute('data-index', index); // Set a data attribute with the index
-            li.innerHTML = `
-                <strong>${entry.date} - ${entry.title}</strong>
-                <p>${entry.description}</p>
-                ${entry.file ? `<a href="${entry.file}" download>Download File</a>` : ''}
-                <button class="delete-btn">삭제</button>
-            `;
-            entriesList.appendChild(li);
-        });
-    }
+    <main>
+        <section id="add-progress">
+            <h2>진행 상황 추가</h2>
+            <form id="progress-form">
+                <label for="date">등록 날짜:</label>
+                <input type="date" id="date" required>
+                <label for="title">제목:</label>
+                <input type="text" id="title" placeholder="제목을 입력하세요" required>
+                <label for="description">내용:</label>
+                <textarea id="description" placeholder="여기에 진행 상황을 기록하세요..." required></textarea>
+                <label for="file-upload">파일 업로드:</label>
+                <input type="file" id="file-upload">
+                <button type="submit">진행 상황 저장</button>
+            </form>
+        </section>
 
-    function saveEntry(event) {
-        event.preventDefault();
-        const date = document.getElementById('date').value;
-        const title = document.getElementById('title').value;
-        const description = document.getElementById('description').value;
-        const fileInput = document.getElementById('file-upload');
-        const file = fileInput.files[0] ? URL.createObjectURL(fileInput.files[0]) : null;
+        <section id="progress-list">
+            <h2>저장된 진행 상황</h2>
+            <ul id="entries">
+                <!-- JavaScript가 진행 상황 항목을 여기에 추가합니다 -->
+            </ul>
+            <button id="backup">백업</button>
+        </section>
+    </main>
 
-        const newEntry = { date, title, description, file };
+    <footer>
+        <p>&copy; 2024 내 포트폴리오</p>
+    </footer>
 
-        const entries = JSON.parse(localStorage.getItem('progressEntries')) || [];
-        entries.push(newEntry);
-        localStorage.setItem('progressEntries', JSON.stringify(entries));
-
-        loadEntries();
-        progressForm.reset();
-    }
-
-    function deleteEntry(index) {
-        const entries = JSON.parse(localStorage.getItem('progressEntries')) || [];
-        entries.splice(index, 1);
-        localStorage.setItem('progressEntries', JSON.stringify(entries));
-        loadEntries();
-    }
-
-    function backupEntries() {
-        const entries = JSON.parse(localStorage.getItem('progressEntries')) || [];
-        const blob = new Blob([JSON.stringify(entries, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'progress-backup.json';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    }
-
-    // Attach event listener to the parent element
-    entriesList.addEventListener('click', function(event) {
-        if (event.target && event.target.matches('button.delete-btn')) {
-            const index = event.target.parentElement.getAttribute('data-index');
-            deleteEntry(index);
-        }
-    });
-
-    progressForm.addEventListener('submit', saveEntry);
-    backupButton.addEventListener('click', backupEntries);
-
-    loadEntries();
-});
+    <script src="progress.js"></script>
+</body>
+</html>
