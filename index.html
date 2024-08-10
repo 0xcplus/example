@@ -1,12 +1,47 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Result</title>
-	</head>
-	<body><h1>YEAH SANDWICHES</h1>
-	<img src="http://bit.ly/RhrMEn" />
-		<p>I like eggs.</p>
-		<p>And ham!</p>
-		<p>But mostly sandwiches.</p>
-	</body>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+	body
+	{
+	font-family:"noto sans KR";
+	font-size:30px;
+	}
+
+	input
+	{
+	font-family:"noto sans KR";
+	}
+  </style>
+  <title>CHAPTER 10</title>
+ </head>
+ <body>
+ 	<input type="button" value="Yes"  onclick="alert('Hello World');">
+	<input type="button" value="Unconnect" ondblclick="Summon();">
+
+	<input id="UserName" type="text" value="Type the name of user.">
+
+	<script type="text/javascript">
+		function Summon()
+		{
+			var a = prompt("server");
+			alert("A summoner has left the game : "+a+" server");
+			dom.value=a;
+		}
+
+		var dom = document.getElementById("UserName");
+		dom.onclick = Summon;
+
+		/*
+		1. document.폼이름.위젯ID.value;
+		2. document.forms[index].위젯ID.vlaue;
+		3. document.forms[index].elements[index].vlaue;
+		*/
+	</script>
+	<!--
+	onclick, ondblclick
+	onload, onresize, onscroll
+	-->
+ </body>
 </html>
