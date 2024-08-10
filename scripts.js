@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Example: Add some projects
-    const projects = ['Project 1', 'Project 2', 'Project 3'];
+    const projects = ['프로젝트 1', '프로젝트 2', '프로젝트 3'];
     projects.forEach(project => {
         const li = document.createElement('li');
         li.textContent = project;
