@@ -8,11 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
         entriesList.innerHTML = '';
         entries.forEach((entry, index) => {
             const li = document.createElement('li');
+            li.setAttribute('data-index', index); // Set a data attribute with the index
             li.innerHTML = `
                 <strong>${entry.date} - ${entry.title}</strong>
                 <p>${entry.description}</p>
                 ${entry.file ? `<a href="${entry.file}" download>Download File</a>` : ''}
-                <button onclick="deleteEntry(${index})">삭제</button>
+                <button class="delete-btn">삭제</button>
             `;
             entriesList.appendChild(li);
         });
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         progressForm.reset();
     }
 
-    window.deleteEntry = function(index) {
+    function deleteEntry(index) {
         const entries = JSON.parse(localStorage.getItem('progressEntries')) || [];
         entries.splice(index, 1);
         localStorage.setItem('progressEntries', JSON.stringify(entries));
@@ -54,6 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
         a.click();
         document.body.removeChild(a);
     }
+
+    // Attach event listener to the parent element
+    entriesList.addEventListener('click', function(event) {
+        if (event.target && event.target.matches('button.delete-btn')) {
+            const index = event.target.parentElement.getAttribute('data-index');
+            deleteEntry(index);
+        }
+    });
 
     progressForm.addEventListener('submit', saveEntry);
     backupButton.addEventListener('click', backupEntries);
