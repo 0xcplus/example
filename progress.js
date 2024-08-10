@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         progressForm.reset();
     }
 
-    function deleteEntry(index) {
+    window.deleteEntry = function(index) {
         const entries = JSON.parse(localStorage.getItem('progressEntries')) || [];
         entries.splice(index, 1);
         localStorage.setItem('progressEntries', JSON.stringify(entries));
